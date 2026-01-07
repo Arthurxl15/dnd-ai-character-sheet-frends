@@ -1,5 +1,5 @@
 {
   "livros_permitidos": ["LDJ", "Xanathar", "Tasha", "Mordenkainen"],
   "classes": ["Artífice", "Bárbaro", "Bardo", "Bruxo", "Clérigo", "Druida", "Feiticeiro", "Guerreiro", "Ladino", "Mago", "Monge", "Paladino", "Patrulheiro"],
-  "racas": ["Anão", "Elfo", "Drow", "Halfling", "Humano", "Draconato", "Gnomo", "Meio-Elfo", "Meio-Orc", "Tiefling", "Aasimar", "Tabaxi", "Goliath", "Tortle", "Fada", "Harengon"]
+  "racas": ["Anão", "Elfo","Halfling", "Humano", "Draconato", "Gnomo", "Meio-Elfo", "Meio-Orc", "Tiefling", "Aasimar", "Tabaxi", "Goliath", "Tortle", "Fada", "Harengon", "Shadar-kai"]
 }
