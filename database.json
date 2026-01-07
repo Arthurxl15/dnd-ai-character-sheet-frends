@@ -36,77 +36,77 @@
   },
   "classes": {
     "Artífice": {
+      "dado_vida": 8, "att_magia": "INT",
       "subclasses": ["Armeiro", "Alquimista", "Artilheiro", "Batalhão de Aço"],
-      "truques": ["Consertar", "Orientação", "Jato de Fogo", "Raio de Gelo"],
-      "magias_n1": ["Curar Ferimentos", "Fogo Fada", "Graxa", "Catapulta"]
+      "truques": ["Consertar", "Orientação", "Jato de Fogo"],
+      "magias_n1": ["Curar Ferimentos", "Fogo Fada", "Graxa"]
     },
     "Bárbaro": {
-      "subclasses": ["Caminho do Totem", "Caminho do Zelote (XGE)", "Caminho da Besta (Tasha)", "Magia Selvagem (Tasha)", "Berserker"],
+      "dado_vida": 12, "att_magia": "FOR",
+      "subclasses": ["Totem", "Zelote", "Besta", "Magia Selvagem", "Berserker"],
       "truques": [], "magias_n1": []
     },
     "Bardo": {
+      "dado_vida": 8, "att_magia": "CAR",
       "subclasses": ["Conhecimento", "Bravura", "Eloquência", "Glamour", "Espadas"],
-      "truques": ["Zombaria Viciosa", "Amizade", "Ilusão Menor", "Luz"],
-      "magias_n1": ["Palavra Curativa", "Riso de Tasha", "Sussurros Dissonantes", "Heroísmo"]
+      "truques": ["Zombaria Viciosa", "Luz", "Ilusão Menor"],
+      "magias_n1": ["Palavra Curativa", "Riso de Tasha", "Sussurros Dissonantes"]
     },
     "Bruxo": {
+      "dado_vida": 8, "att_magia": "CAR",
       "subclasses": ["Hexblade", "O Fiador", "O Gênio", "O Arquifada", "O Grande Antigo"],
-      "truques": ["Rajada Mística", "Toque Gelado", "Mãos Mágicas", "Amizade"],
-      "magias_n1": ["Bruxaria (Hex)", "Repreensão Infernal", "Braços de Hadar", "Armadura de Agathys"]
+      "truques": ["Rajada Mística", "Toque Gelado", "Mãos Mágicas"],
+      "magias_n1": ["Bruxaria (Hex)", "Repreensão Infernal", "Armadura de Agathys"]
     },
     "Clérigo": {
-      "subclasses": ["Vida", "Guerra", "Crepúsculo", "Ordem", "Paz", "Tempestade", "Luz"],
-      "truques": ["Chama Sagrada", "Orientação", "Taumaturgia", "Poupar Moribundos"],
-      "magias_n1": ["Bênção", "Curar Ferimentos", "Guia Divina", "Escudo da Fé", "Comando"]
+      "dado_vida": 8, "att_magia": "SAB",
+      "subclasses": ["Vida", "Guerra", "Crepúsculo", "Ordem", "Tempestade"],
+      "truques": ["Chama Sagrada", "Orientação", "Taumaturgia"],
+      "magias_n1": ["Bênção", "Curar Ferimentos", "Guia Divina"]
     },
     "Druida": {
-      "subclasses": ["Lua", "Terra", "Esporos", "Estrelas", "Sonhos", "Pastor", "Incêndios"],
-      "truques": ["Chicote de Espinhos", "Bordão Místico", "Criar Chamas", "Druidismo"],
-      "magias_n1": ["Bomfruto", "Enredar", "Fogo Fada", "Névoa Obscurecente"]
+      "dado_vida": 8, "att_magia": "SAB",
+      "subclasses": ["Lua", "Terra", "Esporos", "Estrelas", "Sonhos"],
+      "truques": ["Chicote de Espinhos", "Orientação", "Bordão Místico"],
+      "magias_n1": ["Bomfruto", "Enredar", "Fogo Fada"]
     },
     "Feiticeiro": {
-      "subclasses": ["Dracônica", "Magia Selvagem", "Mente Aberrante", "Alma Favorecida", "Relógio"],
-      "truques": ["Raio de Gelo", "Toque Chocante", "Mãos Mágicas", "Jato de Fogo"],
-      "magias_n1": ["Escudo Arcano", "Mísseis Mágicos", "Orbe Cromática", "Sono"]
+      "dado_vida": 6, "att_magia": "CAR",
+      "subclasses": ["Dracônica", "Magia Selvagem", "Mente Aberrante", "Alma Favorecida"],
+      "truques": ["Raio de Gelo", "Toque Chocante", "Jato de Fogo"],
+      "magias_n1": ["Escudo Arcano", "Mísseis Mágicos", "Sono"]
     },
     "Guerreiro": {
-      "subclasses": ["Campeão", "Mestre de Batalha", "Cavaleiro Rúnico (Tasha)", "Cavaleiro Arcano", "Arauto do Sol (XGE)"],
+      "dado_vida": 10, "att_magia": "FOR",
+      "subclasses": ["Campeão", "Mestre de Batalha", "Cavaleiro Rúnico", "Cavaleiro Arcano"],
       "truques": [], "magias_n1": []
     },
     "Ladino": {
-      "subclasses": ["Assassino", "Ladrão", "Fantasma (Tasha)", "Swashbuckler (XGE)", "Inquisitivo", "Mente Magistral"],
+      "dado_vida": 8, "att_magia": "DES",
+      "subclasses": ["Assassino", "Ladrão", "Fantasma", "Swashbuckler", "Inquisitivo"],
       "truques": [], "magias_n1": []
     },
     "Mago": {
-      "subclasses": ["Evocação", "Abjuração", "Lâmina Cantante", "Adivinhação", "Necromancia", "Escribas", "Ilusão"],
-      "truques": ["Raio de Fogo", "Mãos Mágicas", "Mensagem", "Toque Chocante", "Prestidigitação"],
-      "magias_n1": ["Mísseis Mágicos", "Escudo Arcano", "Sono", "Encontrar Familiar", "Graxa"]
+      "dado_vida": 6, "att_magia": "INT",
+      "subclasses": ["Evocação", "Abjuração", "Lâmina Cantante", "Adivinhação", "Necromancia"],
+      "truques": ["Raio de Fogo", "Mãos Mágicas", "Mensagem"],
+      "magias_n1": ["Mísseis Mágicos", "Escudo Arcano", "Sono", "Encontrar Familiar"]
     },
     "Monge": {
-      "subclasses": ["Mão Aberta", "Sombra", "Misericórdia (Tasha)", "Eu Astral (Tasha)", "Sol Radiante (XGE)"],
+      "dado_vida": 8, "att_magia": "SAB",
+      "subclasses": ["Mão Aberta", "Sombra", "Misericórdia", "Eu Astral"],
       "truques": [], "magias_n1": []
     },
     "Paladino": {
-      "subclasses": ["Devoção", "Vingança", "Glória", "Conquista", "Redenção"],
-      "truques": [],
-      "magias_n1": ["Bênção", "Duelo Compelido", "Favor Divino", "Destruição Trovejante"]
+      "dado_vida": 10, "att_magia": "CAR",
+      "subclasses": ["Devoção", "Vingança", "Glória", "Conquista"],
+      "truques": [], "magias_n1": ["Bênção", "Duelo Compelido", "Favor Divino"]
     },
     "Patrulheiro": {
-      "subclasses": ["Gloom Stalker", "Mestre das Feras", "Caçador", "Fey Wanderer", "Errante do Horizonte"],
-      "truques": ["Orientação (Tasha)", "Druidismo (Tasha)"],
-      "magias_n1": ["Marca do Caçador", "Saraivada de Espinhos", "Bomfruto", "Alarme", "Golpe Enredante"]
+      "dado_vida": 10, "att_magia": "SAB",
+      "subclasses": ["Gloom Stalker", "Mestre das Feras", "Caçador", "Fey Wanderer"],
+      "truques": [], "magias_n1": ["Marca do Caçador", "Saraivada de Espinhos", "Bomfruto"]
     }
   },
-  "talentos": [
-    "Atirador de Elite (Sharpshooter)",
-    "Conjurador de Guerra (War Caster)",
-    "Mestre de Armas de Haste (Polearm Master)",
-    "Iniciado em Magia",
-    "Resiliente",
-    "Alerta",
-    "Líder Inspirador",
-    "Sorte (Lucky)",
-    "Especialista em Besta",
-    "Sentinela"
-  ]
+  "talentos": ["Atirador de Elite", "Conjurador de Guerra", "Iniciado em Magia", "Alerta", "Sentinela", "Sorte", "Mestre de Armas de Haste"]
 }
