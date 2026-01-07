@@ -1,5 +1,64 @@
 {
-  "livros_permitidos": ["LDJ", "Xanathar", "Tasha", "Mordenkainen"],
-  "classes": ["Artífice", "Bárbaro", "Bardo", "Bruxo", "Clérigo", "Druida", "Feiticeiro", "Guerreiro", "Ladino", "Mago", "Monge", "Paladino", "Patrulheiro"],
-  "racas": ["Anão", "Elfo","Halfling", "Humano", "Draconato", "Gnomo", "Meio-Elfo", "Meio-Orc", "Tiefling", "Aasimar", "Tabaxi", "Goliath", "Tortle", "Fada", "Harengon", "Shadar-kai"]
+  "classes": {
+    "Artífice": {
+      "subclasses": ["Alquimista", "Artilheiro", "Batalhão de Aço", "Armeiro (Tasha)"],
+      "truques": ["Mãos Mágicas", "Consertar", "Jato de Fogo", "Orientação"],
+      "magias_n1": ["Curar Ferimentos", "Fogo Fada", "Graxa", "Recuo Acelerado"]
+    },
+    "Bárbaro": {
+      "subclasses": ["Caminho do Totem", "Caminho do Zelote (XGE)", "Caminho da Besta (Tasha)", "Magia Selvagem"],
+      "truques": [], "magias_n1": []
+    },
+    "Bardo": {
+      "subclasses": ["Colégio do Conhecimento", "Colégio da Bravura", "Colégio da Eloquência (Tasha)", "Colégio do Glamour"],
+      "truques": ["Zombaria Viciosa", "Amizade", "Ilusão Menor"],
+      "magias_n1": ["Palavra Curativa", "Riso Horrível de Tasha", "Onda Trovejante"]
+    },
+    "Bruxo": {
+      "subclasses": ["O Fiador", "O Arquifada", "O Grande Antigo", "Hexblade (XGE)", "O Gênio (Tasha)"],
+      "truques": ["Rajada Mística", "Toque Gelado", "Mãos Mágicas"],
+      "magias_n1": ["Bruxaria (Hex)", "Repreensão Infernal", "Braços de Hadar"]
+    },
+    "Clérigo": {
+      "subclasses": ["Domínio da Vida", "Domínio da Guerra", "Domínio da Ordem (Tasha)", "Domínio da Paz"],
+      "truques": ["Chama Sagrada", "Orientação", "Taumaturgia"],
+      "magias_n1": ["Bênção", "Curar Ferimentos", "Guia Divina"]
+    },
+    "Druida": {
+      "subclasses": ["Círculo da Lua", "Círculo da Terra", "Círculo dos Esporos (Tasha)", "Círculo das Estrelas"],
+      "truques": ["Chicote de Espinhos", "Orientação", "Bordão Místico"],
+      "magias_n1": ["Enredar", "Bomfruto", "Fogo Fada"]
+    },
+    "Feiticeiro": {
+      "subclasses": ["Linhagem Dracônica", "Magia Selvagem", "Mente Aberrante (Tasha)", "Alma Favorecida"],
+      "truques": ["Raio de Gelo", "Toque Chocante", "Mãos Mágicas"],
+      "magias_n1": ["Escudo Arcano", "Mísseis Mágicos", "Orbe Cromática"]
+    },
+    "Guerreiro": {
+      "subclasses": ["Campeão", "Mestre de Batalha", "Cavaleiro Rúnico (Tasha)", "Eco Knight"],
+      "truques": [], "magias_n1": []
+    },
+    "Ladino": {
+      "subclasses": ["Assassino", "Ladrão", "Fantasma (Tasha)", "Swashbuckler (XGE)"],
+      "truques": [], "magias_n1": []
+    },
+    "Mago": {
+      "subclasses": ["Evocação", "Abjuração", "Lâmina Cantante (Tasha)", "Ordem dos Escribas"],
+      "truques": ["Raio de Fogo", "Mãos Mágicas", "Mensagem"],
+      "magias_n1": ["Encontrar Familiar", "Sono", "Mísseis Mágicos"]
+    },
+    "Monge": {
+      "subclasses": ["Caminho da Mão Aberta", "Caminho da Sombra", "Caminho da Misericórdia (Tasha)"],
+      "truques": [], "magias_n1": []
+    },
+    "Paladino": {
+      "subclasses": ["Juramento de Devoção", "Juramento de Vingança", "Juramento da Glória (Tasha)"],
+      "truques": [], "magias_n1": ["Bênção", "Duelo Compelido", "Favor Divino"]
+    },
+    "Patrulheiro": {
+      "subclasses": ["Caçador", "Mestre das Feras", "Gloom Stalker (XGE)", "Fey Wanderer (Tasha)"],
+      "truques": [],
+      "magias_n1": ["Marca do Caçador", "Saraivada de Espinhos", "Bomfruto"]
+    }
+  }
 }
