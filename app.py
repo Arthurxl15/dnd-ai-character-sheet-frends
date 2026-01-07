@@ -22,7 +22,7 @@ def calc_custo(v):
     tabela = {8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9}
     return tabela.get(v, 0)
 
-# --- INTERFACE ---
+# --- APP ---
 st.title("🧙‍♂️ Gerador de Personagem Oficial (LDJ/XGE/TCOE/MPMM)")
 
 if not db:
@@ -45,7 +45,6 @@ st.divider()
 
 # 2. ATRIBUTOS
 st.header("2. Atributos (27 Pontos / Sem Repetição)")
-st.info("Regra: Cada valor base (8-15) deve ser único. Bônus de raça são automáticos.")
 
 bonus_raca = db['racas'][raca_sel]['bonus']
 finais = {}
@@ -61,7 +60,6 @@ for i, status in enumerate(["FOR", "DES", "CON", "INT", "SAB", "CAR"]):
         finais[status] = {"total": total, "mod": mod}
         st.metric(label="Total", value=total, delta=f"Mod: {mod}")
 
-# Validações
 duplicados = len(selecionados) != len(set(selecionados))
 custo_total = sum([calc_custo(v) for v in selecionados])
 
@@ -77,13 +75,13 @@ else:
 
 st.divider()
 
-# 3. STATUS DE COMBATE E MAGIA
+# 3. STATUS DE COMBATE (CORREÇÃO DO ERRO)
 st.header("3. Status de Combate")
 mod_des = finais["DES"]["mod"]
 mod_con = finais["CON"]["mod"]
 mod_sab = finais["SAB"]["mod"]
 
-# Cálculos Automáticos
+# Usando as chaves corrigidas do JSON
 pv_inicial = db['classes'][classe_sel]['dado_vida'] + mod_con
 ca_base = 10 + mod_des
 percepcao_p = 10 + mod_sab
@@ -97,22 +95,11 @@ sc3.metric("Iniciativa", f"+{mod_des}")
 sc4.metric("Percepção Passiva", percepcao_p)
 
 if db['classes'][classe_sel]['magias_n1']:
-    st.info(f"✨ **Conjurador ({att_magia}):** CD de Magia: {8 + 2 + mod_magia} | Bônus de Ataque: +{2 + mod_magia}")
+    st.info(f"✨ **Conjurador ({att_magia}):** CD de Magia: {8 + 2 + mod_magia} | Bônus: +{2 + mod_magia}")
 
 st.divider()
 
-# 4. ESPECIALIZAÇÕES
-st.header("4. Magias e Talentos")
-t_col, m_col, f_col = st.columns(3)
-with t_col: t_sel = st.multiselect("Truques", db['classes'][classe_sel]['truques'])
-with m_col: m_sel = st.multiselect("Magias Nível 1", db['classes'][classe_sel]['magias_n1'])
-with f_col: f_sel = st.selectbox("Talento", ["Nenhum"] + db['talentos'])
-
-# BOTÃO FINAL
+# 4. BOTÃO FINAL
 if st.button("🔥 GERAR FICHA", disabled=not autorizado):
     st.balloons()
     st.success("Ficha Autorizada!")
-    st.markdown(f"### {nome if nome else 'Herói'} - {raca_sel} {classe_sel} ({sub_sel})")
-    st.write(f"**PV:** {pv_inicial} | **CA:** {ca_base} | **Iniciativa:** +{mod_des}")
-    st.write(f"**Magias:** {', '.join(m_sel) if m_sel else 'Nenhuma'}")
-    st.download_button("Baixar Ficha", f"Nome: {nome}\nRaça: {raca_sel}\nClasse: {classe_sel}\nPV: {pv_inicial}", "ficha.txt")
