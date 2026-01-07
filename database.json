@@ -1,64 +1,112 @@
 {
+  "racas": {
+    "Aasimar": {"bonus": {"CAR": 2, "SAB": 1}, "habilidades": ["Mãos Curativas", "Resistência Celestial", "Portador da Luz"]},
+    "Aarakocra": {"bonus": {"DES": 2, "SAB": 1}, "habilidades": ["Voo (9m)", "Garras (1d6)"]},
+    "Anão da Colina": {"bonus": {"CON": 2, "SAB": 1}, "habilidades": ["Resistência a Veneno", "Tenacidade Anã", "Visão no Escuro"]},
+    "Anão da Montanha": {"bonus": {"CON": 2, "FOR": 2}, "habilidades": ["Treino com Armaduras", "Resistência a Veneno"]},
+    "Bugbear": {"bonus": {"FOR": 2, "DES": 1}, "habilidades": ["Braços Longos", "Ataque Surpresa"]},
+    "Centauro": {"bonus": {"FOR": 2, "SAB": 1}, "habilidades": ["Carga", "Cascos (1d6)"]},
+    "Changeling": {"bonus": {"CAR": 2, "INT": 1}, "habilidades": ["Mudança de Forma", "Instinto Mutável"]},
+    "Draconato": {"bonus": {"FOR": 2, "CAR": 1}, "habilidades": ["Sopro Elemental", "Resistência Elemental"]},
+    "Duergar": {"bonus": {"CON": 2, "FOR": 1}, "habilidades": ["Magia Duergar", "Resistência Mental"]},
+    "Eladrin": {"bonus": {"DES": 2, "CAR": 1}, "habilidades": ["Passo Feérico", "Mudança de Estação"]},
+    "Elfo Alto": {"bonus": {"DES": 2, "INT": 1}, "habilidades": ["Truque Extra", "Transe"]},
+    "Elfo da Floresta": {"bonus": {"DES": 2, "SAB": 1}, "habilidades": ["Pés Ligeiros", "Máscara da Natureza"]},
+    "Elfo Drow": {"bonus": {"DES": 2, "CAR": 1}, "habilidades": ["Visão no Escuro Superior", "Fogo Fada", "Sensibilidade à Luz"]},
+    "Fada": {"bonus": {"INT": 2, "DES": 1}, "habilidades": ["Voo", "Magia das Fadas"]},
+    "Firbolg": {"bonus": {"SAB": 2, "FOR": 1}, "habilidades": ["Magia Firbolg", "Passo Oculto"]},
+    "Genasi (Ar)": {"bonus": {"CON": 2, "DES": 1}, "habilidades": ["Levitar", "Resistência Elétrica"]},
+    "Genasi (Fogo)": {"bonus": {"CON": 2, "INT": 1}, "habilidades": ["Mãos Flamejantes", "Resistência a Fogo"]},
+    "Githyanki": {"bonus": {"INT": 2, "FOR": 1}, "habilidades": ["Psiquismo Gith", "Treino Marcial"]},
+    "Gnomo da Rocha": {"bonus": {"INT": 2, "CON": 1}, "habilidades": ["Engenhocas", "Esperteza de Gnomo"]},
+    "Goblin": {"bonus": {"DES": 2, "CON": 1}, "habilidades": ["Fuga Ágil", "Fúria dos Pequenos"]},
+    "Goliath": {"bonus": {"FOR": 2, "CON": 1}, "habilidades": ["Resistência de Pedra", "Atleta Nato"]},
+    "Halfling Pés Leves": {"bonus": {"DES": 2, "CAR": 1}, "habilidades": ["Sortudo", "Furtividade Natural"]},
+    "Harengon": {"bonus": {"DES": 2, "SAB": 1}, "habilidades": ["Iniciativa de Lebre", "Salto de Coelho"]},
+    "Humano Variante": {"bonus": {"DES": 1, "SAB": 1}, "habilidades": ["1 Talento Adicional", "1 Perícia"]},
+    "Lizardfolk": {"bonus": {"CON": 2, "SAB": 1}, "habilidades": ["Armadura Natural", "Mordida"]},
+    "Meio-Orc": {"bonus": {"FOR": 2, "CON": 1}, "habilidades": ["Resistência Implacável", "Ataques Selvagens"]},
+    "Orc": {"bonus": {"FOR": 2, "CON": 1}, "habilidades": ["Adrenalina", "Visão no Escuro"]},
+    "Sátiro": {"bonus": {"CAR": 2, "DES": 1}, "habilidades": ["Resistência Mágica", "Cabeçada"]},
+    "Shadar-kai": {"bonus": {"DES": 2, "CON": 1}, "habilidades": ["Bênção da Rainha Raven", "Resistência Necrótica"]},
+    "Tabaxi": {"bonus": {"DES": 2, "CAR": 1}, "habilidades": ["Agilidade Felina", "Escalada"]},
+    "Tortle": {"bonus": {"FOR": 2, "SAB": 1}, "habilidades": ["Casco Natural (CA 17)", "Prender Respiração"]},
+    "Tiefling": {"bonus": {"CAR": 2, "INT": 1}, "habilidades": ["Resistência Infernal", "Legado Infernal"]},
+    "Yuan-ti": {"bonus": {"CAR": 2, "INT": 1}, "habilidades": ["Resistência Mágica", "Sugestão"]}
+  },
   "classes": {
     "Artífice": {
-      "subclasses": ["Alquimista", "Artilheiro", "Batalhão de Aço", "Armeiro (Tasha)"],
-      "truques": ["Mãos Mágicas", "Consertar", "Jato de Fogo", "Orientação"],
-      "magias_n1": ["Curar Ferimentos", "Fogo Fada", "Graxa", "Recuo Acelerado"]
+      "subclasses": ["Armeiro", "Alquimista", "Artilheiro", "Batalhão de Aço"],
+      "truques": ["Consertar", "Orientação", "Jato de Fogo", "Raio de Gelo"],
+      "magias_n1": ["Curar Ferimentos", "Fogo Fada", "Graxa", "Catapulta"]
     },
     "Bárbaro": {
-      "subclasses": ["Caminho do Totem", "Caminho do Zelote (XGE)", "Caminho da Besta (Tasha)", "Magia Selvagem"],
+      "subclasses": ["Caminho do Totem", "Caminho do Zelote (XGE)", "Caminho da Besta (Tasha)", "Magia Selvagem (Tasha)", "Berserker"],
       "truques": [], "magias_n1": []
     },
     "Bardo": {
-      "subclasses": ["Colégio do Conhecimento", "Colégio da Bravura", "Colégio da Eloquência (Tasha)", "Colégio do Glamour"],
-      "truques": ["Zombaria Viciosa", "Amizade", "Ilusão Menor"],
-      "magias_n1": ["Palavra Curativa", "Riso Horrível de Tasha", "Onda Trovejante"]
+      "subclasses": ["Conhecimento", "Bravura", "Eloquência", "Glamour", "Espadas"],
+      "truques": ["Zombaria Viciosa", "Amizade", "Ilusão Menor", "Luz"],
+      "magias_n1": ["Palavra Curativa", "Riso de Tasha", "Sussurros Dissonantes", "Heroísmo"]
     },
     "Bruxo": {
-      "subclasses": ["O Fiador", "O Arquifada", "O Grande Antigo", "Hexblade (XGE)", "O Gênio (Tasha)"],
-      "truques": ["Rajada Mística", "Toque Gelado", "Mãos Mágicas"],
-      "magias_n1": ["Bruxaria (Hex)", "Repreensão Infernal", "Braços de Hadar"]
+      "subclasses": ["Hexblade", "O Fiador", "O Gênio", "O Arquifada", "O Grande Antigo"],
+      "truques": ["Rajada Mística", "Toque Gelado", "Mãos Mágicas", "Amizade"],
+      "magias_n1": ["Bruxaria (Hex)", "Repreensão Infernal", "Braços de Hadar", "Armadura de Agathys"]
     },
     "Clérigo": {
-      "subclasses": ["Domínio da Vida", "Domínio da Guerra", "Domínio da Ordem (Tasha)", "Domínio da Paz"],
-      "truques": ["Chama Sagrada", "Orientação", "Taumaturgia"],
-      "magias_n1": ["Bênção", "Curar Ferimentos", "Guia Divina"]
+      "subclasses": ["Vida", "Guerra", "Crepúsculo", "Ordem", "Paz", "Tempestade", "Luz"],
+      "truques": ["Chama Sagrada", "Orientação", "Taumaturgia", "Poupar Moribundos"],
+      "magias_n1": ["Bênção", "Curar Ferimentos", "Guia Divina", "Escudo da Fé", "Comando"]
     },
     "Druida": {
-      "subclasses": ["Círculo da Lua", "Círculo da Terra", "Círculo dos Esporos (Tasha)", "Círculo das Estrelas"],
-      "truques": ["Chicote de Espinhos", "Orientação", "Bordão Místico"],
-      "magias_n1": ["Enredar", "Bomfruto", "Fogo Fada"]
+      "subclasses": ["Lua", "Terra", "Esporos", "Estrelas", "Sonhos", "Pastor", "Incêndios"],
+      "truques": ["Chicote de Espinhos", "Bordão Místico", "Criar Chamas", "Druidismo"],
+      "magias_n1": ["Bomfruto", "Enredar", "Fogo Fada", "Névoa Obscurecente"]
     },
     "Feiticeiro": {
-      "subclasses": ["Linhagem Dracônica", "Magia Selvagem", "Mente Aberrante (Tasha)", "Alma Favorecida"],
-      "truques": ["Raio de Gelo", "Toque Chocante", "Mãos Mágicas"],
-      "magias_n1": ["Escudo Arcano", "Mísseis Mágicos", "Orbe Cromática"]
+      "subclasses": ["Dracônica", "Magia Selvagem", "Mente Aberrante", "Alma Favorecida", "Relógio"],
+      "truques": ["Raio de Gelo", "Toque Chocante", "Mãos Mágicas", "Jato de Fogo"],
+      "magias_n1": ["Escudo Arcano", "Mísseis Mágicos", "Orbe Cromática", "Sono"]
     },
     "Guerreiro": {
-      "subclasses": ["Campeão", "Mestre de Batalha", "Cavaleiro Rúnico (Tasha)", "Eco Knight"],
+      "subclasses": ["Campeão", "Mestre de Batalha", "Cavaleiro Rúnico (Tasha)", "Cavaleiro Arcano", "Arauto do Sol (XGE)"],
       "truques": [], "magias_n1": []
     },
     "Ladino": {
-      "subclasses": ["Assassino", "Ladrão", "Fantasma (Tasha)", "Swashbuckler (XGE)"],
+      "subclasses": ["Assassino", "Ladrão", "Fantasma (Tasha)", "Swashbuckler (XGE)", "Inquisitivo", "Mente Magistral"],
       "truques": [], "magias_n1": []
     },
     "Mago": {
-      "subclasses": ["Evocação", "Abjuração", "Lâmina Cantante (Tasha)", "Ordem dos Escribas"],
-      "truques": ["Raio de Fogo", "Mãos Mágicas", "Mensagem"],
-      "magias_n1": ["Encontrar Familiar", "Sono", "Mísseis Mágicos"]
+      "subclasses": ["Evocação", "Abjuração", "Lâmina Cantante", "Adivinhação", "Necromancia", "Escribas", "Ilusão"],
+      "truques": ["Raio de Fogo", "Mãos Mágicas", "Mensagem", "Toque Chocante", "Prestidigitação"],
+      "magias_n1": ["Mísseis Mágicos", "Escudo Arcano", "Sono", "Encontrar Familiar", "Graxa"]
     },
     "Monge": {
-      "subclasses": ["Caminho da Mão Aberta", "Caminho da Sombra", "Caminho da Misericórdia (Tasha)"],
+      "subclasses": ["Mão Aberta", "Sombra", "Misericórdia (Tasha)", "Eu Astral (Tasha)", "Sol Radiante (XGE)"],
       "truques": [], "magias_n1": []
     },
     "Paladino": {
-      "subclasses": ["Juramento de Devoção", "Juramento de Vingança", "Juramento da Glória (Tasha)"],
-      "truques": [], "magias_n1": ["Bênção", "Duelo Compelido", "Favor Divino"]
+      "subclasses": ["Devoção", "Vingança", "Glória", "Conquista", "Redenção"],
+      "truques": [],
+      "magias_n1": ["Bênção", "Duelo Compelido", "Favor Divino", "Destruição Trovejante"]
     },
     "Patrulheiro": {
-      "subclasses": ["Caçador", "Mestre das Feras", "Gloom Stalker (XGE)", "Fey Wanderer (Tasha)"],
-      "truques": [],
-      "magias_n1": ["Marca do Caçador", "Saraivada de Espinhos", "Bomfruto"]
+      "subclasses": ["Gloom Stalker", "Mestre das Feras", "Caçador", "Fey Wanderer", "Errante do Horizonte"],
+      "truques": ["Orientação (Tasha)", "Druidismo (Tasha)"],
+      "magias_n1": ["Marca do Caçador", "Saraivada de Espinhos", "Bomfruto", "Alarme", "Golpe Enredante"]
     }
-  }
+  },
+  "talentos": [
+    "Atirador de Elite (Sharpshooter)",
+    "Conjurador de Guerra (War Caster)",
+    "Mestre de Armas de Haste (Polearm Master)",
+    "Iniciado em Magia",
+    "Resiliente",
+    "Alerta",
+    "Líder Inspirador",
+    "Sorte (Lucky)",
+    "Especialista em Besta",
+    "Sentinela"
+  ]
 }
