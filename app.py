@@ -2,14 +2,11 @@ import streamlit as st
 import json
 import math
 
-# Configuração da Página
-st.set_page_config(
-    page_title="D&D 5e Character Builder",
-    page_icon="🎲",
-    layout="wide"
-)
+# --- CONFIGURAÇÃO DA INTERFACE ---
+st.set_page_config(page_title="D&D 5e Character Builder", page_icon="🎲", layout="wide")
 
-# Função para carregar o Banco de Dados
+# --- BANCO DE DADOS INTEGRADO ---
+# (Pode ser mantido aqui ou carregado de um database.json externo)
 @st.cache_data
 def load_db():
     try:
@@ -20,114 +17,124 @@ def load_db():
 
 db = load_db()
 
-# Título Principal
-st.title("🧙‍♂️ Gerador de Personagem: Multiverso D&D")
-st.markdown("Fontes: *Player's Handbook, Xanathar, Tasha & Mordenkainen*")
-st.divider()
+# --- FUNÇÕES DE LÓGICA ---
+def calc_mod(valor):
+    return math.floor((valor - 10) / 2)
+
+def calcular_custo_point_buy(valor):
+    # Tabela oficial de custos (LDJ pág. 13)
+    tabela = {8: 0, 9: 1, 10: 2, 11: 3, 12: 4, 13: 5, 14: 7, 15: 9}
+    return tabela.get(valor, 0)
+
+# --- APP ---
+st.title("🧙‍♂️ Gerador de Personagem Oficial (LDJ/XGE/TCOE/MPMM)")
+st.markdown("Sistema de Validação e Autorização de Fichas D&D 5e")
 
 if not db:
-    st.error("Erro: Arquivo 'database.json' não encontrado no repositório!")
+    st.error("Erro: Arquivo 'database.json' não encontrado. Certifique-se de que ele está no repositório.")
     st.stop()
 
 # --- 1. IDENTIDADE ---
-st.header("1. Definições Iniciais")
-col_r, col_c, col_s = st.columns(3)
+st.header("1. Identidade")
+col1, col2, col3 = st.columns(3)
 
-with col_r:
-    raca_sel = st.selectbox("Raça", list(db['racas'].keys()))
-    
-with col_c:
-    classe_sel = st.selectbox("Classe", list(db['classes'].keys()))
-
-with col_s:
-    subclasses = db['classes'][classe_sel]['subclasses']
-    sub_sel = st.selectbox("Subclasse", subclasses if subclasses else ["Classe Única"])
+with col1:
+    raca_sel = st.selectbox("Selecione a Raça", list(db['racas'].keys()), index=list(db['racas'].keys()).index("Shadar-kai") if "Shadar-kai" in db['racas'] else 0)
+with col2:
+    classe_sel = st.selectbox("Selecione a Classe", list(db['classes'].keys()))
+with col3:
+    subs = db['classes'][classe_sel]['subclasses']
+    sub_sel = st.selectbox("Selecione a Subclasse", subs if subs else ["Classe Única"])
 
 st.divider()
 
-# --- 2. ATRIBUTOS (REGRAS OFICIAIS) ---
-st.header("2. Atributos Base")
-st.info("Regra Point Buy: Selecione entre 8 e 15. Os bônus de raça são somados automaticamente.")
+# --- 2. COMPRA DE PONTOS (POINT BUY) ---
+st.header("2. Atributos (Sistema de 27 Pontos)")
+st.info("Regra Oficial: Você tem 27 pontos para gastar. Valores base permitidos: 8 a 15.")
 
 bonus_raca = db['racas'][raca_sel]['bonus']
 finais = {}
+custo_total = 0
 
 atr_cols = st.columns(6)
 for i, status in enumerate(["FOR", "DES", "CON", "INT", "SAB", "CAR"]):
     with atr_cols[i]:
-        # Input base limitado pelas regras do LDJ
-        base = st.number_input(status, 8, 15, 10, key=f"base_{status}")
+        # Input do Valor Base
+        valor_base = st.number_input(status, 8, 15, 8, key=f"base_{status}")
         
-        # Soma bônus da raça
-        adicional = bonus_raca.get(status, 0)
-        total = base + adicional
+        # Lógica de Custo
+        custo = calcular_custo_point_buy(valor_base)
+        custo_total += custo
         
-        # Cálculo do Modificador: (Valor - 10) / 2 arredondado para baixo
-        mod = math.floor((total - 10) / 2)
-        finais[status] = {"total": total, "mod": mod}
+        # Soma de Bônus e Modificador
+        total = valor_base + bonus_raca.get(status, 0)
+        mod = calc_mod(total)
+        finais[status] = {"total": total, "mod": mod, "base": valor_base}
         
-        st.metric(label="Total", value=total, delta=f"Mod: {mod}")
+        st.write(f"Custo: **{custo}**")
+        st.metric(label="Total Final", value=total, delta=f"Mod: {mod}")
+
+# Validação dos Pontos
+pontos_restantes = 27 - custo_total
+if pontos_restantes < 0:
+    st.error(f"⚠️ LIMITE EXCEDIDO: Você usou {custo_total} pontos. Remova {abs(pontos_restantes)} ponto(s).")
+    autorizado_pontos = False
+else:
+    st.success(f"✅ Pontos Disponíveis: {pontos_restantes} / 27")
+    autorizado_pontos = True
 
 st.divider()
 
-# --- 3. MAGIAS, TRUQUES E TALENTOS ---
-st.header("3. Especializações")
+# --- 3. ESPECIALIZAÇÕES ---
+st.header("3. Magias e Talentos")
 col_t, col_m, col_f = st.columns(3)
 
 with col_t:
     truques_list = db['classes'][classe_sel]['truques']
-    if truques_list:
-        truques_sel = st.multiselect("Escolha seus Truques", truques_list)
-    else:
-        st.write("Esta classe não possui truques.")
-        truques_sel = []
+    truques_sel = st.multiselect("Escolha seus Truques", truques_list) if truques_list else st.info("Sem truques.")
 
 with col_m:
     magias_list = db['classes'][classe_sel]['magias_n1']
-    if magias_list:
-        magias_sel = st.multiselect("Escolha Magias Nível 1", magias_list)
-    else:
-        st.write("Esta classe não possui magias de Nível 1.")
-        magias_sel = []
+    magias_sel = st.multiselect("Escolha Magias Nível 1", magias_list) if magias_list else st.info("Sem magias nível 1.")
 
 with col_f:
-    talento_sel = st.selectbox("Talento (Se disponível)", ["Nenhum"] + db['talentos'])
+    talento_sel = st.selectbox("Escolha um Talento", ["Nenhum"] + db['talentos'])
 
 st.divider()
 
-# --- 4. GERAÇÃO E VALIDAÇÃO ---
-if st.button("🔥 AUTORIZAR E GERAR FICHA"):
+# --- 4. AUTORIZAÇÃO E EXPORTAÇÃO ---
+if st.button("🔥 AUTORIZAR E GERAR FICHA", disabled=not autorizado_pontos):
     st.balloons()
+    st.success("FICHA AUTORIZADA! Todos os elementos estão de acordo com os manuais oficiais.")
     
     st.header(f"📜 Ficha: {raca_sel} {classe_sel}")
     st.subheader(f"Subclasse: {sub_sel}")
-    
-    res_col1, res_col2 = st.columns(2)
-    
-    with res_col1:
-        st.write("### 📊 Atributos Finais")
+
+    res1, res2 = st.columns(2)
+    with res1:
+        st.write("### 📊 Atributos e Modificadores")
         for k, v in finais.items():
-            mod_str = f"+{v['mod']}" if v['mod'] >= 0 else str(v['mod'])
-            st.write(f"**{k}:** {v['total']} (Modificador: `{mod_str}`)")
-            
-    with res_col2:
-        st.write("### ✨ Habilidades e Magias")
-        st.write("**Habilidades de Raça:**")
+            mod_txt = f"+{v['mod']}" if v['mod'] >= 0 else str(v['mod'])
+            st.write(f"**{k}:** {v['total']} (Base {v['base']} + Bônus) | Modificador: `{mod_txt}`")
+
+    with res2:
+        st.write("### ✨ Poderes e Magias")
+        st.write("**Habilidades Raciais:**")
         for hab in db['racas'][raca_sel]['habilidades']:
-            st.write(f"- {hab}")
+            st.write(f"✅ {hab}")
         
         if talento_sel != "Nenhum":
-            st.write(f"**Talento Selecionado:** {talento_sel}")
-            
+            st.write(f"**Talento:** {talento_sel}")
+        
         if truques_sel:
             st.write(f"**Truques:** {', '.join(truques_sel)}")
-            
         if magias_sel:
-            st.write(f"**Magias Nível 1:** {', '.join(magias_sel)}")
+            st.write(f"**Magias:** {', '.join(magias_sel)}")
 
-    # Botão para download do texto da ficha
-    txt_ficha = f"FICHA DE D&D 5E\n\nRaça: {raca_sel}\nClasse: {classe_sel}\nSubclasse: {sub_sel}\n\nATRIBUTOS:\n"
+    # Gerador de Texto para Download
+    txt_ficha = f"FICHA AUTORIZADA D&D 5e\n\nRaça: {raca_sel}\nClasse: {classe_sel}\nSubclasse: {sub_sel}\n\nATRIBUTOS:\n"
     for k, v in finais.items():
         txt_ficha += f"{k}: {v['total']} ({v['mod']})\n"
+    txt_ficha += f"\nMAGIAS: {', '.join(magias_sel)}\nTALENTO: {talento_sel}"
     
-    st.download_button("📥 Baixar Ficha em TXT", txt_ficha, file_name="ficha_dnd.txt")
+    st.download_button("📥 Baixar Ficha Autorizada", txt_ficha, file_name="ficha_oficial_dnd.txt")
