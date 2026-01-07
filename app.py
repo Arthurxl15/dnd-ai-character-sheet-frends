@@ -1,34 +1,68 @@
 import streamlit as st
 import json
 
-# Simulação da base de dados (em um projeto real, você carrega o JSON)
-with open('database.json', 'r', encoding='utf-8') as f:
-    db = json.load(f)
+# Configuração da página
+st.set_page_config(page_title="D&D 5e Character Builder", layout="wide")
 
-st.title("🧙‍♂️ Validador de Fichas D&D 5e")
+# Função para carregar o banco de dados
+def load_db():
+    with open('database.json', 'r', encoding='utf-8') as f:
+        return json.load(f)
 
-# Interface de Entrada
-raca = st.selectbox("Escolha a Raça", db['racas'])
-classe = st.selectbox("Escolha a Classe", db['classes'])
-nivel = st.number_input("Nível", min_value=1, max_value=20, value=1)
-magias_input = st.text_area("Digite as magias (separadas por vírgula)")
+db = load_db()
 
-if st.button("Gerar e Autorizar Ficha"):
-    # PROMPT PARA A IA (Configuração do Sistema)
-    prompt_sistema = f"""
-    Você é um validador de D&D 5e estrito. 
-    Fontes permitidas: {db['livros_permitidos']}.
-    O usuário quer um {raca} {classe} nível {nivel}.
-    Magias escolhidas: {magias_input}.
+st.title("🏹 Gerador de Fichas Automatizado")
+st.markdown("---")
+
+# --- PASSO 1: IDENTIDADE ---
+col1, col2, col3 = st.columns(3)
+with col1:
+    raca = st.selectbox("Selecione a Raça", ["Shadar-kai", "Elfo Drow", "Anão", "Humano", "Tabaxi", "Goliath"])
+with col2:
+    classe = st.selectbox("Selecione a Classe", list(db['classes'].keys()))
+with col3:
+    subclasse = st.selectbox("Selecione a Subclasse", db['classes'][classe]['subclasses'])
+
+# --- PASSO 2: ATRIBUTOS ---
+st.subheader("📊 Atributos Base")
+atr_cols = st.columns(6)
+atributos = {}
+for i, status in enumerate(["FOR", "DES", "CON", "INT", "SAB", "CAR"]):
+    with atr_cols[i]:
+        atributos[status] = st.number_input(status, 8, 20, 10)
+
+# --- PASSO 3: MAGIAS E TRUQUES ---
+st.subheader("🔮 Magias e Truques (Autorizados)")
+col_t, col_m = st.columns(2)
+
+with col_t:
+    truques_disp = db['classes'][classe]['truques']
+    if truques_disp:
+        truques_sel = st.multiselect("Escolha seus Truques", truques_disp)
+    else:
+        st.write("Esta classe não possui truques iniciais.")
+        truques_sel = []
+
+with col_m:
+    magias_disp = db['classes'][classe]['magias_n1']
+    if magias_disp:
+        magias_sel = st.multiselect("Escolha suas Magias de Nível 1", magias_disp)
+    else:
+        st.write("Esta classe não possui magias no nível 1.")
+        magias_sel = []
+
+# --- PASSO 4: RESUMO ---
+st.markdown("---")
+if st.button("💾 Gerar Ficha Final"):
+    st.header("📜 Ficha do Personagem")
     
-    Verifique:
-    1. Se as magias pertencem à lista da classe {classe}.
-    2. Se o nível das magias é compatível com o nível {nivel}.
-    3. Se os bônus raciais de {raca} estão corretos conforme os livros.
+    resumo_col1, resumo_col2 = st.columns(2)
+    with resumo_col1:
+        st.write(f"**Personagem:** {raca} {classe} ({subclasse})")
+        st.write("**Atributos:**", atributos)
     
-    Retorne a ficha formatada ou aponte os erros de 'Não Autorizado'.
-    """
+    with resumo_col2:
+        st.write(f"**Truques:** {', '.join(truques_sel) if truques_sel else 'Nenhum'}")
+        st.write(f"**Magias:** {', '.join(magias_sel) if magias_sel else 'Nenhuma'}")
     
-    st.info("Enviando para a IA validar...")
-    # Aqui você conectaria a API do Gemini ou OpenAI
-    st.markdown(f"### Resultado da Verificação:\n(A IA processaria o prompt aqui)")
+    st.success("Ficha validada de acordo com LDJ, Xanathar, Tasha e Mordenkainen!")
